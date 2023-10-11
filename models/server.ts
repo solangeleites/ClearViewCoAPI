@@ -31,8 +31,15 @@ export class Server {
     await DBConnection();
   }
   middlewares(): void {
-    this.app.use(cors());
+    const corsOptions= {
+      origin: 'http://localhost:5173',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204,
+    }
     this.app.use(express.json());
+    this.app.use(cors(corsOptions));
+
   }
 
   routes(): void {

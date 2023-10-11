@@ -55,7 +55,7 @@ export const verifyUser = async (
       });
       return;
     }
-    if (usuario.code !== usuario.code) {
+    if (usuario.code !== code) {
       res.status(401).json({
         msg: 'El código ingresado es incorrecto',
       });
