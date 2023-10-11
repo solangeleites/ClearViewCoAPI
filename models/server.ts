@@ -20,6 +20,7 @@ export class Server {
     this.ordersPath = '/orders'
     this.issuesPath = '/issues'
 
+
     this.conectarDB();
     this.middlewares();
 
