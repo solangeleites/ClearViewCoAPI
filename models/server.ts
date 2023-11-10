@@ -41,7 +41,7 @@ export class Server {
     optionsSuccessStatus: 204,
     }
     this.app.use(express.json());
-    this.app.use(cors(corsOptions));
+    this.app.use(cors());
   }
 
   routes(): void {
