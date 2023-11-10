@@ -5,12 +5,14 @@ import authRoutes from '../routes/auth';
 import ordersRoutes from '../routes/orders'
 import issueRoutes from '../routes/issue'
 
+
 export class Server {
   app: Express;
   port: string | number | undefined;
   authPath: string;
   ordersPath: string;
   issuesPath: string;
+  front: string | undefined;
 
 
   constructor() {
@@ -19,6 +21,7 @@ export class Server {
     this.authPath = '/auth';
     this.ordersPath = '/orders'
     this.issuesPath = '/issues'
+    this.front = process.env.URL_FRONT;
 
 
     this.conectarDB();
@@ -32,14 +35,13 @@ export class Server {
   }
   middlewares(): void {
     const corsOptions= {
-      origin: 'http://localhost:5173',
+      origin: `${this.front}`,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
     }
     this.app.use(express.json());
-    this.app.use(cors(corsOptions));
-
+    this.app.use(cors());
   }
 
   routes(): void {
@@ -53,4 +55,6 @@ export class Server {
       console.log(`corriendo en el puerto ${this.port}`);
     });
   }
-}
+};
+
+
